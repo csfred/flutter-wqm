@@ -1,8 +1,11 @@
 1，下载安装node.js，并配置node.js环境
+
 2，创建发布目录 mkdir ./node/server/
+
 3, 进入server目录，开始使用express生成器生成项目
    npm install express-generator -g 全局安装express生成器
    express --view=pug mainapp 生成项目 mainapp就是主入库类
+
 4，进入mainapp目录cd mainapp 安装依赖并启动 npm i;  npm start
     启动后 浏览器访问 http://localhost:3000 ，成功后可看到 welcom to express
 
