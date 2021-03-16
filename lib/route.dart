@@ -18,6 +18,7 @@ final routes = {
 
 // ignore: top_level_function_literal_block
 // ignore: missing_return
+// ignore: top_level_function_literal_block
 var onGenerateRoute = (RouteSettings settings) {
   final String name = settings.name;
   final Function pageContentBuilder = routes[name];

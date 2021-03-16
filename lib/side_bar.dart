@@ -6,10 +6,11 @@ class SideBar extends StatelessWidget {
     return Column(
       children: <Widget>[
         new Image.asset(
-          "lib/banner.jpg",
+          "images/main.jpg",
           fit: BoxFit.fill,
-          height: 120.0,
+          height: 170.5,
         ),
+        Divider(),
         ListTile(
           leading: CircleAvatar(
             child: Icon(Icons.language),
@@ -56,8 +57,7 @@ class SideBar extends StatelessWidget {
           ),
           title: Text("用户管理"),
           onTap: () => Navigator.pushNamed(context, "/UserManage"),
-        ),
-        Divider(),
+        )
       ],
     );
   }
