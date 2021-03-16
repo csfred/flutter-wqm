@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'side_bar.dart';
 import 'route.dart';
+//import './utils/responsive_widget.dart';
 
 void main() {
   runApp(MainApp());
@@ -28,9 +30,17 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    /**
+     * ScreenUtil 屏幕自适应工具，等比适配
+     */
+    //ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false, //去掉Debug图标
-      theme: ThemeData(primarySwatch: Colors.indigo),
+      theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.indigo[200],
+          accentColor: Colors.indigoAccent),
       onGenerateRoute: onGenerateRoute,
       home: Scaffold(
         appBar: AppBar(
@@ -41,45 +51,9 @@ class _MainAppState extends State<MainApp> {
           centerTitle: true,
         ),
         body: Container(
-            child: Column(children: <Widget>[
-          Container(
-              child: progress < 1.0
-                  ? LinearProgressIndicator(value: progress)
-                  : Container()),
-          Expanded(
-            child: Container(
-                // child: InAppWebView(
-                //   initialUrl:
-                //       "https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_pc_3#tab0",
-                //   initialHeaders: {},
-                //   initialOptions: InAppWebViewWidgetOptions(
-                //       inAppWebViewOptions: InAppWebViewOptions(
-                //     debuggingEnabled: true,
-                //   )),
-                //   onWebViewCreated: (InAppWebViewController controller) {
-                //     webView = controller;
-                //   },
-                //   onLoadStart: (InAppWebViewController controller, String url) {
-                //     setState(() {
-                //       this.url = url;
-                //     });
-                //   },
-                //   onLoadStop:
-                //       (InAppWebViewController controller, String url) async {
-                //     setState(() {
-                //       this.url = url;
-                //     });
-                //   },
-                //   onProgressChanged:
-                //       (InAppWebViewController controller, int progress) {
-                //     setState(() {
-                //       this.progress = progress / 100;
-                //     });
-                //   },
-                // ),
-                ),
-          ),
-        ])),
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 1024, vertical: 768),
+        )),
         drawer: Builder(
           builder: (context) => Drawer(
             child: SideBar(),
