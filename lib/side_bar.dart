@@ -13,7 +13,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.language),
+            child: Icon(Icons.home),
           ),
           title: Text("首页"),
           onTap: () => Navigator.pushNamed(context, "/Home"),
@@ -21,7 +21,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.assessment),
+            child: Icon(Icons.room),
           ),
           title: Text("站点地图"),
           onTap: () => Navigator.pushNamed(context, '/StationMap'),
@@ -29,7 +29,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.local_hospital),
+            child: Icon(Icons.edit),
           ),
           title: Text("站点编辑"),
           onTap: () => Navigator.pushNamed(context, '/StationEdit'),
@@ -37,7 +37,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.train),
+            child: Icon(Icons.devices),
           ),
           title: Text("设备操作"),
           onTap: () => Navigator.pushNamed(context, "/DeviceOpt"),
@@ -45,7 +45,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.room),
+            child: Icon(Icons.assessment),
           ),
           title: Text("报表"),
           onTap: () => Navigator.pushNamed(context, "/Report"),
@@ -53,7 +53,7 @@ class SideBar extends StatelessWidget {
         Divider(),
         ListTile(
           leading: CircleAvatar(
-            child: Icon(Icons.edit),
+            child: Icon(Icons.edit_attributes),
           ),
           title: Text("用户管理"),
           onTap: () => Navigator.pushNamed(context, "/UserManage"),
