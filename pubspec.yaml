@@ -35,7 +35,6 @@ dependencies:
   font_awesome_flutter: any #这个一个Flutter的图标库
   fluttertoast: any
   shared_preferences: ^0.5.6 #cacheUtils
-  #flutter_echart: ^1.0.0
   charts_flutter: ^0.10.0
 
 dev_dependencies:

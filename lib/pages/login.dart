@@ -15,9 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final FocusNode _userNameFocusNode = FocusNode();
   final FocusNode _pwdFocusNode = FocusNode();
 
-  String _userName = "";
-  String _userPws = "";
-
   @override
   void initState() {
     super.initState();
@@ -244,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
       Fluttertoast.showToast(
           msg: "请输入用户名",
           gravity: ToastGravity.CENTER,
-          timeInSecForIos: 2,
+          timeInSecForIosWeb: 2,
           textColor: Colors.white,
           fontSize: 14.0);
       return false;
@@ -252,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
       Fluttertoast.showToast(
           msg: "请输入密码",
           gravity: ToastGravity.CENTER,
-          timeInSecForIos: 2,
+          timeInSecForIosWeb: 2,
           textColor: Colors.white,
           fontSize: 14.0);
       return false;
