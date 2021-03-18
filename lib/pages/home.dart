@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web/side_bar.dart';
 
 import '../utils/pie_chars.dart';
+import '../utils/line_chars.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '污水处理在线监测平台',
+          '污水处理在线监测平台 / 首页',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
@@ -53,7 +54,9 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           _buildStatisWidget(),
           Divider(),
-          PieCharts(380, 150, pieDataList),
+          PieCharts(380, 150, true, pieDataList),
+          Divider(),
+          TimeLineCharts(300, 300, true),
         ]);
   }
 

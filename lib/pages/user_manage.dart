@@ -15,7 +15,7 @@ class _UserManagePageState extends State<UserManagePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '污水处理在线监测平台',
+          '污水处理在线监测平台 / 用户管理',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,

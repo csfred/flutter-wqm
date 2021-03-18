@@ -15,7 +15,7 @@ class _ReportPageState extends State<ReportPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '污水处理在线监测平台',
+          '污水处理在线监测平台 / 报表',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,

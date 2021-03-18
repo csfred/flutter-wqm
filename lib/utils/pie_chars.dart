@@ -24,6 +24,7 @@ class LinearSales {
 class PieCharts extends StatelessWidget {
   final double _width;
   final double _height;
+  final bool animate;
 
   final List<LinearSales> _dataList;
 
@@ -36,14 +37,14 @@ class PieCharts extends StatelessWidget {
     );
   }
 
-  PieCharts(this._width, this._height, this._dataList);
+  PieCharts(this._width, this._height, this.animate, this._dataList);
 
   /// 构建饼状图
   Widget _buildPieChatWidget() {
     List<charts.Series> seriesList = _createSampleData(_dataList);
     return charts.PieChart(
       seriesList,
-      animate: true,
+      animate: this.animate,
       defaultRenderer: new charts.ArcRendererConfig(
         arcWidth: 60,
         arcRendererDecorators: [new charts.ArcLabelDecorator()],

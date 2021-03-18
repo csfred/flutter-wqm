@@ -15,7 +15,7 @@ class _StationEditPageState extends State<StationEditPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '污水处理在线监测平台',
+          '污水处理在线监测平台 / 站点编辑',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,

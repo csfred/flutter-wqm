@@ -241,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
       Fluttertoast.showToast(
           msg: "请输入用户名",
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 2,
+          //timeInSecForIosWeb: 2,
           textColor: Colors.white,
           fontSize: 14.0);
       return false;
@@ -249,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
       Fluttertoast.showToast(
           msg: "请输入密码",
           gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 2,
+          //timeInSecForIosWeb: 2,
           textColor: Colors.white,
           fontSize: 14.0);
       return false;

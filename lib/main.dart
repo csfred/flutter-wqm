@@ -44,7 +44,7 @@ class _MainAppState extends State<MainApp> {
      */
     //ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
 
-    _isLogin = true;
+    //_isLogin = true;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false, //去掉Debug图标

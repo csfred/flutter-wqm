@@ -15,7 +15,7 @@ class _DeviceOptPageState extends State<DeviceOptPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '污水处理在线监测平台',
+          '污水处理在线监测平台 / 设备操作',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
