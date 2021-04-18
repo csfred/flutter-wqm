@@ -18,3 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 百度地图插件引入
 http://lbsyun.baidu.com/index.php?title=flutter/loc/download  插件下载，直接下载  地图flutter插件 定位插件在web端无法使用
 http://lbsyun.baidu.com/index.php?title=flutter/loc/guide/create  开发文档指导 
+
+https://console.amap.com/dev/key/app 高德地图开发平台
+
+flutter run -d chrome --release --web-renderer html --no-sound-null-safety

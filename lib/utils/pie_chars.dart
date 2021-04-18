@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class LinearSales {
@@ -8,7 +9,7 @@ class LinearSales {
 
   final Color color;
 
-  charts.Color chartsColor;
+  late charts.Color chartsColor;
 
   factory LinearSales(String title, int sales, Color color) {
     LinearSales linearSales = LinearSales._internal(title, sales, color);

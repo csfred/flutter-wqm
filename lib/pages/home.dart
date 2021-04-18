@@ -1,6 +1,7 @@
 import 'dart:convert' as convert;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web/flutter_amap_map/flutter_2d_amap.dart';
 import 'package:flutter_web/side_bar.dart';
 
 import '../utils/pie_chars.dart';
@@ -52,11 +53,23 @@ class _HomePageState extends State<HomePage> {
     return Column(
         //纵向显示 统计量  折线图  图表（雷达图，饼状图，柱状图）
         children: <Widget>[
+          Divider(),
           _buildStatisWidget(),
           Divider(),
-          PieCharts(380, 150, true, pieDataList),
-          Divider(),
+          //PieCharts(380, 150, true, pieDataList),
+          //Divider(),
           //TimeLineCharts(300, 300, true),
+          //FlutterMap(),
+          Container(
+            width: 1000,
+            height: 500,
+            child:AMap2DView(
+            onPoiSearched: (result) {
+            },
+            onAMap2DViewCreated: (controller) {
+            },
+          )),
+          
         ]);
   }
 

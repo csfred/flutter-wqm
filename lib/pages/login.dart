@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'home.dart';
@@ -9,8 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _pwdEditController;
-  TextEditingController _userNameEditController;
+  late TextEditingController _pwdEditController;
+  late TextEditingController _userNameEditController;
 
   final FocusNode _userNameFocusNode = FocusNode();
   final FocusNode _pwdFocusNode = FocusNode();

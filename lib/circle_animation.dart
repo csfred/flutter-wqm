@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class DiscData {
   static final _rng = Random();
 
-  double size;
-  Color color;
-  Alignment alignment;
+  late double size;
+  late Color color;
+  late Alignment alignment;
 
   DiscData() {
     color = Color.fromARGB(

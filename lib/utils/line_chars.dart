@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class TimeSeriesSales {
@@ -8,7 +9,7 @@ class TimeSeriesSales {
   final int sales;
 
   TimeSeriesSales(
-      {this.timeCurrent, this.timePrevious, this.timeTarget, this.sales});
+      {required this.timeCurrent, required this.timePrevious, required this.timeTarget, required this.sales});
 }
 
 /// 时间折线图
@@ -19,16 +20,16 @@ class TimeLineCharts extends StatelessWidget {
 
   final Map<String, List<TimeSeriesSales>> _dataMapList = {
     "data": [
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 19), sales: 5),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 26), sales: 25),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 3), sales: 100),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 10), sales: 75),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 19), sales: 5, timePrevious: new DateTime(2017, 9, 19), timeTarget: new DateTime(2017, 9, 19)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 26), sales: 25, timePrevious: new DateTime(2017, 9, 26), timeTarget: new DateTime(2017, 9, 26)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 3), sales: 100, timePrevious: new DateTime(2017, 10, 3), timeTarget: new DateTime(2017, 10, 3)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 10), sales: 75, timePrevious: new DateTime(2017, 10, 10), timeTarget: new DateTime(2017, 10, 10)),
     ],
     "hitch": [
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 19), sales: 10),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 26), sales: 50),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 3), sales: 200),
-      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 10), sales: 150),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 19), sales: 10, timePrevious: new DateTime(2017, 9, 19), timeTarget: new DateTime(2017, 9, 19)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 9, 26), sales: 50, timePrevious: new DateTime(2017, 9, 26), timeTarget: new DateTime(2017, 9, 26)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 3), sales: 200, timePrevious: new DateTime(2017, 10, 3), timeTarget: new DateTime(2017, 10, 3)),
+      new TimeSeriesSales(timeCurrent: new DateTime(2017, 10, 10), sales: 150, timePrevious: new DateTime(2017, 10, 10), timeTarget: new DateTime(2017, 10, 10)),
     ]
   };
 

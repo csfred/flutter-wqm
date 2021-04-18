@@ -6,10 +6,10 @@ class ResponsiveWidget extends StatelessWidget {
   final Widget smallScreen;
 
   const ResponsiveWidget(
-      {Key key,
-      @required this.largeScreen,
-      this.mediumScreen,
-      this.smallScreen})
+      {required Key key,
+      required this.largeScreen,
+      required this.mediumScreen,
+      required this.smallScreen})
       : super(key: key);
 
   static bool isSmallScreen(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:flutter_web/pages/login.dart';
 import 'package:flutter_web/utils/cache_utils.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'flutter_amap_map/flutter_2d_amap.dart';
 import 'side_bar.dart';
 import 'route.dart';
 //import './utils/responsive_widget.dart';
@@ -21,6 +22,7 @@ class _MainAppState extends State<MainApp> {
   double progress = 0;
 
   bool _isLogin = false;
+
   _getLoginState() async {
     _isLogin = await CacheUtils.getLoginState();
   }
@@ -30,6 +32,7 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     // 判断是否登录
     _getLoginState();
+    Flutter2dAMap.setApiKey(webKey: "cs_web_open_map");
   }
 
   @override
