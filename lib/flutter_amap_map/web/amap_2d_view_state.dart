@@ -42,6 +42,7 @@ class AMap2DViewState extends State<AMap2DView> {
       _aMap.plugin(plugins, allowInterop(() {
         _aMap.addControl(Scale());
         _aMap.addControl(ToolBar());
+        _aMap.setCenter(new LngLat(109.103,34.360));
 
         final AMap2DWebController controller = AMap2DWebController(_aMap, widget);
         if (widget.onAMap2DViewCreated != null) {

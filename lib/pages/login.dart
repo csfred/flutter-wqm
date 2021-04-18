@@ -37,9 +37,16 @@ class _LoginPageState extends State<LoginPage> {
             _buildTopWidget(context),
             //_buildAccountLoginTip(),
             SizedBox(height: 100),
-            _buildEditWidget(context),
+            Container( 
+              alignment: Alignment.center,
+              child: _buildEditWidget(context),
+              ),
+            
             SizedBox(height: 50),
-            _buildLoginButton(),
+            Container(
+              alignment: Alignment.center,
+              child: _buildLoginButton(),
+              ),
           ],
         ),
       ),
@@ -48,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
 
   /// 头部
   Widget _buildTopWidget(BuildContext context) {
-    double height = 200.0;
+    double height = 180.0;
     double width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
@@ -57,6 +64,12 @@ class _LoginPageState extends State<LoginPage> {
       child: Stack(
         clipBehavior: Clip.none,
         children: <Widget>[
+          Container(
+            child: Center(
+              child: Text(
+               "欢迎进入监测平台",
+              style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w100),),),
+          ),
           Positioned(
             left: (width - 90) / 2.0,
             top: height - 45,
@@ -68,10 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                 boxShadow: [
                   BoxShadow(color: Theme.of(context).cardColor, blurRadius: 4.0)
                 ],
-
                 ///形状
                 shape: BoxShape.circle,
-
                 ///图片
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -103,7 +114,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildLoginNameTextField() {
     return Container(
-      height: 40,
+      width: 300,
+      height: 60,
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -138,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: "请输入用户名",
                 border: InputBorder.none,
               ),
-              style: TextStyle(fontSize: 14),
+              style: TextStyle(fontSize: 18),
             ),
           )
         ],
@@ -148,7 +160,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildPwdTextField() {
     return Container(
-        height: 40,
+        width: 300,
+        height: 60,
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -183,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "请输入密码",
                   border: InputBorder.none,
                 ),
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 18),
                 obscureText: true,
 
                 /// 设置密码
@@ -197,8 +210,9 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       margin: EdgeInsets.only(top: 40, left: 10, right: 10),
       padding: EdgeInsets.all(0),
-      width: MediaQuery.of(context).size.width - 20,
-      height: 40,
+      //width: MediaQuery.of(context).size.width - 20,
+      width: 300,
+      height: 60,
       child: Container(
         height: 44,
         decoration: BoxDecoration(
@@ -231,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
             },
             child: Text(
               "登录",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black, fontSize: 28),
             )),
       ),
     );

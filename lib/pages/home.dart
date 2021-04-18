@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
           //TimeLineCharts(300, 300, true),
           //FlutterMap(),
           Container(
-            width: 1000,
-            height: 500,
+            width: 1500,
+            height: 700,
             child:AMap2DView(
             onPoiSearched: (result) {
             },
