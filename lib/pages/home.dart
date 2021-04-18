@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           Divider(),
           PieCharts(380, 150, true, pieDataList),
           Divider(),
-          TimeLineCharts(300, 300, true),
+          //TimeLineCharts(300, 300, true),
         ]);
   }
 

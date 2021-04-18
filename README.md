@@ -14,3 +14,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+百度地图插件引入
+http://lbsyun.baidu.com/index.php?title=flutter/loc/download  插件下载，直接下载  地图flutter插件 定位插件在web端无法使用
+http://lbsyun.baidu.com/index.php?title=flutter/loc/guide/create  开发文档指导 
