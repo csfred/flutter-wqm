@@ -22,3 +22,12 @@ http://lbsyun.baidu.com/index.php?title=flutter/loc/guide/create  开发文档�
 https://console.amap.com/dev/key/app 高德地图开发平台
 
 flutter run -d chrome --release --web-renderer html --no-sound-null-safety
+
+git 设置代理
+git config --global http.proxy 'http://proxyIpAddr:port'
+git config --global https.proxy 'socks://proxyIpAddr:port'
+
+git 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
