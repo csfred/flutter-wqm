@@ -61,15 +61,14 @@ class _HomePageState extends State<HomePage> {
           //TimeLineCharts(300, 300, true),
           //FlutterMap(),
           Container(
-            width: 1500,
-            height: 700,
-            child:AMap2DView(
-            onPoiSearched: (result) {
-            },
-            onAMap2DViewCreated: (controller) {
-            },
-          )),
-          
+              width: 1500,
+              height: 700,
+              child: AMap2DView(
+                onPoiSearched: (result) {},
+                onAMap2DViewCreated: (controller) {
+                  controller.search('雅逸新城', city: '西安');
+                },
+              )),
         ]);
   }
 
