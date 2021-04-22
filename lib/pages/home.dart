@@ -66,7 +66,10 @@ class _HomePageState extends State<HomePage> {
               child: AMap2DView(
                 onPoiSearched: (result) {},
                 onAMap2DViewCreated: (controller) {
-                  controller.search('雅逸新城', city: '西安');
+                  //定位
+                  //controller.location();
+                  //检索地点
+                  controller.search('华晶商务广场', city: '西安');
                 },
               )),
         ]);

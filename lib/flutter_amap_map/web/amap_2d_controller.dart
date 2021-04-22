@@ -32,7 +32,6 @@ class AMap2DWebController extends AMap2DController {
     ));
 
     _aMap.addControl(_geolocation);
-    location();
   }
 
   final AMap2DView _widget;
@@ -98,6 +97,7 @@ class AMap2DWebController extends AMap2DController {
   
   /// 根据经纬度搜索
   void searchNearBy(LngLat lngLat) {
+    print("当前经度:${lngLat.getLng()},当前纬度:${lngLat.getLat()}");
     if (!_widget.isPoiSearch) {
       return;
     }

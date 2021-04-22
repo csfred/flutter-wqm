@@ -32,7 +32,7 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     // 判断是否登录
     _getLoginState();
-    Flutter2dAMap.setApiKey(webKey: "cs_web_open_map");
+    Flutter2dAMap.setApiKey(webKey: "0d1a1510461e1f285adead4742fca795");
   }
 
   @override
