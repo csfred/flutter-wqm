@@ -1,4 +1,3 @@
-
 import 'package:js/js.dart';
 
 import '../interface/amap_2d_controller.dart';
@@ -7,9 +6,7 @@ import '../poisearch_model.dart';
 import 'amapjs.dart';
 
 class AMap2DWebController extends AMap2DController {
-
   AMap2DWebController(this._aMap, this._widget) {
-
     _placeSearchOptions = PlaceSearchOptions(
       extensions: 'all',
       type: _kType,
@@ -18,10 +15,13 @@ class AMap2DWebController extends AMap2DController {
     );
 
     _aMap.on('click', allowInterop((event) {
-      //_aMap.resize(); /// 2.0无法自适应容器大小，需手动调用触发计算。
-      searchNearBy(LngLat(event.lnglat.getLng(), event.lnglat.getLat()));
+      //_aMap.resize(); // 2.0无法自适应容器大小，需手动调用触发计算。
+      LngLat lngLat = new LngLat(event.lnglat.getLng(), event.lnglat.getLat());
+      //searchNearBy(lngLat);
+      setPosMarker(
+          lngLat.getLat().toString(), lngLat.getLng().toString(), '污水站点测试');
     }));
-    
+
     /// 定位插件初始化
     _geolocation = Geolocation(GeolocationOptions(
       timeout: 15000,
@@ -36,11 +36,33 @@ class AMap2DWebController extends AMap2DController {
 
   final AMap2DView _widget;
   final AMap _aMap;
-  
+
   late Geolocation _geolocation;
   MarkerOptions? _markerOptions;
   late PlaceSearchOptions _placeSearchOptions;
-  static const String _kType = '010000|010100|020000|030000|040000|050000|050100|060000|060100|060200|060300|060400|070000|080000|080100|080300|080500|080600|090000|090100|090200|090300|100000|100100|110000|110100|120000|120200|120300|130000|140000|141200|150000|150100|150200|160000|160100|170000|170100|170200|180000|190000|200000';
+  static const String _kType =
+      '010000|010100|020000|030000|040000|050000|050100|060000|060100|060200|060300|060400|070000|080000|080100|080300|080500|080600|090000|090100|090200|090300|100000|100100|110000|110100|120000|120200|120300|130000|140000|141200|150000|150100|150200|160000|160100|170000|170100|170200|180000|190000|200000';
+
+  AMap getMapInstance() {
+    return _aMap;
+  }
+
+  void setPosMarker(String lat, String lon, String title) {
+    final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
+    _aMap.setCenter(lngLat);
+    MarkerOptions markerOptions = new MarkerOptions(
+        title: title,
+        position: lngLat,
+        icon: AMapIcon(IconOptions(
+          size: Size(26, 34),
+          imageSize: Size(26, 34),
+          image:
+              'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+        )),
+        offset: Pixel(-13, -34),
+        anchor: 'bottom-center');
+    _aMap.add(Marker(markerOptions));
+  }
 
   /// city：cityName（中文或中文全拼）、cityCode均可
   @override
@@ -55,6 +77,13 @@ class AMap2DWebController extends AMap2DController {
   }
 
   @override
+  Future<void> setPosLabel(String title) async {
+    //setPosMarker(_aMap, lon, title)
+
+    return Future.value();
+  }
+
+  @override
   Future<void> move(String lat, String lon) async {
     final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
     _aMap.setCenter(lngLat);
@@ -64,12 +93,11 @@ class AMap2DWebController extends AMap2DController {
           icon: AMapIcon(IconOptions(
             size: Size(26, 34),
             imageSize: Size(26, 34),
-            image: 'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+            image:
+                'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
           )),
           offset: Pixel(-13, -34),
-          anchor: 'bottom-center'
-      );
-      
+          anchor: 'bottom-center');
     } else {
       _markerOptions?.position = lngLat;
     }
@@ -94,7 +122,7 @@ class AMap2DWebController extends AMap2DController {
     }));
     return Future.value();
   }
-  
+
   /// 根据经纬度搜索
   void searchNearBy(LngLat lngLat) {
     print("当前经度:${lngLat.getLng()},当前纬度:${lngLat.getLat()}");
@@ -105,39 +133,41 @@ class AMap2DWebController extends AMap2DController {
     placeSearch.searchNearBy('', lngLat, 2000, searchResult);
   }
 
-  Function(String status, SearchResult result) get searchResult => allowInterop((status, result) {
-    final List<PoiSearch> list = <PoiSearch>[];
-    if (status == 'complete') {
-      if (result is SearchResult) {
-        result.poiList?.pois?.forEach((dynamic poi) {
-          if (poi is Poi) {
-            final PoiSearch poiSearch = PoiSearch(
-              cityCode: poi.citycode,
-              cityName: poi.cityname,
-              provinceName: poi.pname,
-              title: poi.name,
-              adName: poi.adname,
-              provinceCode: poi.pcode,
-              latitude: poi.location.getLat().toString(),
-              longitude: poi.location.getLng().toString(),
-            );
-            list.add(poiSearch);
+  Function(String status, SearchResult result) get searchResult =>
+      allowInterop((status, result) {
+        final List<PoiSearch> list = <PoiSearch>[];
+        if (status == 'complete') {
+          if (result is SearchResult) {
+            result.poiList?.pois?.forEach((dynamic poi) {
+              if (poi is Poi) {
+                final PoiSearch poiSearch = PoiSearch(
+                  cityCode: poi.citycode,
+                  cityName: poi.cityname,
+                  provinceName: poi.pname,
+                  title: poi.name,
+                  adName: poi.adname,
+                  provinceCode: poi.pcode,
+                  latitude: poi.location.getLat().toString(),
+                  longitude: poi.location.getLng().toString(),
+                );
+                list.add(poiSearch);
+              }
+            });
           }
-        });
-      }
-    } else if (status == 'no_data'){
-      print('无返回结果');
-    } else {
-      print(result);
-    }
-    /// 默认点移动到搜索结果的第一条
-    if (list.isNotEmpty) {
-      _aMap.setZoom(17);
-      move(list[0].latitude!, list[0].longitude!);
-    }
+        } else if (status == 'no_data') {
+          print('无返回结果');
+        } else {
+          print(result);
+        }
 
-    if (_widget.onPoiSearched != null) {
-      _widget.onPoiSearched!(list);
-    }
-  });
+        /// 默认点移动到搜索结果的第一条
+        if (list.isNotEmpty) {
+          _aMap.setZoom(17);
+          move(list[0].latitude!, list[0].longitude!);
+        }
+
+        if (_widget.onPoiSearched != null) {
+          _widget.onPoiSearched!(list);
+        }
+      });
 }

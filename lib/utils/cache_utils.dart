@@ -1,3 +1,4 @@
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheUtils {
@@ -9,6 +10,7 @@ class CacheUtils {
   static Future<bool> getLoginState() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String token = sp.get(CacheUtils.keyToken) as String;
+    // ignore: unnecessary_null_comparison
     if (token == null) {
       return false;
     }

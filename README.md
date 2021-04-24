@@ -22,8 +22,8 @@ http://lbsyun.baidu.com/index.php?title=flutter/loc/guide/create  开发文档�
 https://console.amap.com/dev/key/app 高德地图开发平台
 
 flutter run -d chrome --release --web-renderer html --no-sound-null-safety 
-不指定浏览器,作为服务端启动
-flutter run --release --web-renderer html --no-sound-null-safety -d web-server
+不指定浏览器,作为服务端启动, 指定端口8091
+flutter run --release --web-renderer html --no-sound-null-safety -d web-server  --web-port 8091
 
 git 设置代理
 git config --global http.proxy 'http://proxyIpAddr:port'
@@ -32,4 +32,7 @@ git config --global https.proxy 'socks://proxyIpAddr:port'
 git 取消代理
 git config --global --unset http.proxy
 git config --global --unset https.proxy
+
+高德地图开发指南
+https://developer.amap.com/api/javascript-api/guide/abc/plugins
 

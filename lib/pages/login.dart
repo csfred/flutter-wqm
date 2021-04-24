@@ -37,16 +37,16 @@ class _LoginPageState extends State<LoginPage> {
             _buildTopWidget(context),
             //_buildAccountLoginTip(),
             SizedBox(height: 100),
-            Container( 
+            Container(
               alignment: Alignment.center,
               child: _buildEditWidget(context),
-              ),
-            
+            ),
+
             SizedBox(height: 50),
             Container(
               alignment: Alignment.center,
               child: _buildLoginButton(),
-              ),
+            ),
           ],
         ),
       ),
@@ -67,8 +67,13 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             child: Center(
               child: Text(
-               "欢迎进入监测平台",
-              style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w100),),),
+                "欢迎进入监测平台",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100),
+              ),
+            ),
           ),
           Positioned(
             left: (width - 90) / 2.0,
@@ -81,8 +86,10 @@ class _LoginPageState extends State<LoginPage> {
                 boxShadow: [
                   BoxShadow(color: Theme.of(context).cardColor, blurRadius: 4.0)
                 ],
+
                 ///形状
                 shape: BoxShape.circle,
+
                 ///图片
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -239,6 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.of(context).pushAndRemoveUntil(
                       new MaterialPageRoute(
                           builder: (context) => new HomePage()),
+                      // ignore: unnecessary_null_comparison
                       (route) => route == null);
                 }
               }

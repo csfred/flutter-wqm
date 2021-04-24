@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Widget widget = Scaffold(
       appBar: AppBar(
         title: Text(
           '污水处理在线监测平台 / 首页',
@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+    return widget;
   }
 
   /// 构建主界面
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   //定位
                   //controller.location();
                   //检索地点
-                  controller.search('华晶商务广场', city: '西安');
+                  controller.search('雅逸新城', city: '西安');
                 },
               )),
         ]);
