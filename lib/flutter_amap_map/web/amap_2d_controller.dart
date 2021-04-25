@@ -49,18 +49,29 @@ class AMap2DWebController extends AMap2DController {
 
   void setPosMarker(String lat, String lon, String title) {
     final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
-    _aMap.setCenter(lngLat);
+    //_aMap.setCenter(lngLat);
+    print('lat=${lngLat.getLat()}, lng=${lngLat.getLng()}');
     MarkerOptions markerOptions = new MarkerOptions(
         title: title,
         position: lngLat,
+        // content: '<div class="custom-content-marker">' +
+        //     '   <img src="https//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png">' +
+        //     '   <div class="close-btn" οnclick="clearMarker()">X</div>' +
+        //     '</div>',
         icon: AMapIcon(IconOptions(
           size: Size(26, 34),
           imageSize: Size(26, 34),
+          // image:
+          //     'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
           image:
-              'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+              'https://a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
         )),
+        label: Label(
+          content: '测试站点信息',
+        ),
         offset: Pixel(-13, -34),
-        anchor: 'bottom-center');
+        anchor: 'top-center',
+        draggable: true);
     _aMap.add(Marker(markerOptions));
   }
 

@@ -1,6 +1,8 @@
 @JS('AMap')
 library amap;
 
+import 'dart:html';
+
 import 'package:js/js.dart';
 
 /// 高德地图js，文档：https://lbs.amap.com/api/javascript-api/guide/abc/prepare
@@ -131,20 +133,58 @@ class MapOptions {
 @JS()
 @anonymous
 class MarkerOptions {
-  external factory MarkerOptions({
-    /// 要显示该marker的地图对象
-    AMap map,
+  /// https://lbs.amap.com/api/jsapi-v2/documentation#marker
+  external factory MarkerOptions(
+      {
 
-    /// 点标记在地图上显示的位置
-    LngLat position,
-    AMapIcon icon,
-    String title,
-    Pixel offset,
-    String anchor,
-  });
+      /// 要显示该marker的地图对象
+      AMap map,
+
+      /// 点标记在地图上显示的位置
+      LngLat position,
+
+      /// 在点标记中显示的图标。可以传一个图标地址，也可以传Icon对象。有合法的content内容设置时，此属性无效。
+      AMapIcon icon,
+
+      /// 鼠标滑过点标记时的文字提示。不设置则鼠标滑过点标无文字提示。
+      String title,
+
+      /// 点标记显示内容。可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。
+      String content,
+
+      /// 添加文本标注
+      Label label,
+
+      /**
+        *   点标记显示位置偏移量，默认值为 [0,0] 。Marker指定position后，默认以marker左上角位置为基准点（若设置了anchor，则以anchor设置位置为基准点），
+        *   对准所给定的position位置，若需使marker指定位置对准在position处，需根据marker的尺寸设置一定的偏移量。
+      */
+      Pixel offset,
+
+      /// 设置点标记锚点，可选值：'top-left','top-center','top-right', 'middle-left', 'center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right' 相关示例
+      String anchor,
+
+      /// 设置点标记是否可拖拽移动，默认值：false
+      bool draggable});
 
   external LngLat get position;
   external set position(LngLat v);
+}
+
+@JS()
+@anonymous
+class Label {
+  external factory Label(
+      {
+
+      /// 标注内容
+      String content,
+
+      /// 文本标注方位 可选值：'top'|'right'|'bottom'|'left'|'center'，默认值: 'right'
+      String direction,
+
+      /// 偏移量
+      Pixel offset});
 }
 
 @JS()
