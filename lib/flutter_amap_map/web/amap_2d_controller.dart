@@ -49,9 +49,13 @@ class AMap2DWebController extends AMap2DController {
 
   void setPosMarker(String lat, String lon, String title) {
     final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
+  
     //_aMap.setCenter(lngLat);
+    
+    _aMap.setZoomAndCenter(18, lngLat, true, 500);
     print('lat=${lngLat.getLat()}, lng=${lngLat.getLng()}');
     MarkerOptions markerOptions = new MarkerOptions(
+        map: _aMap,
         title: title,
         position: lngLat,
         // content: '<div class="custom-content-marker">' +
@@ -66,12 +70,23 @@ class AMap2DWebController extends AMap2DController {
           image:
               'https://a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
         )),
-        label: Label(
-          content: '测试站点信息',
-        ),
-        offset: Pixel(-13, -34),
-        anchor: 'top-center',
+        label: Label(content: '污水站点测试',offset: Pixel(-20,-20), direction: 'right'),
+        offset: Pixel(-10, -20),
+        anchor: 'bottom-right',
         draggable: true);
+    // LabelMarkerOptions markerOptions = new LabelMarkerOptions(
+    //     name: title,
+    //     position: lngLat,
+    //     icon: AMapIcon(IconOptions(
+    //       size: Size(26, 34),
+    //       imageSize: Size(26, 34),
+    //       // image:
+    //       //     'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+    //       image:
+    //           'https://a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
+    //     )),
+    //     text: AMapText(TextOptions(content: title))
+    //     );
     _aMap.add(Marker(markerOptions));
   }
 

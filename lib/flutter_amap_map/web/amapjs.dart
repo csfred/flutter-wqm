@@ -37,6 +37,10 @@ class AMap {
   /// 销毁地图，并清空地图容器
   external destroy();
 
+  external setStatus(bool status);
+
+  external setZoomAndCenter(num zoom, LngLat center, bool immediately, num duration);
+
   external on(String eventName, void Function(MapsEvent event) callback);
 }
 
@@ -80,6 +84,11 @@ class Marker {
 }
 
 @JS()
+class LabelMarker {
+  external LabelMarker(LabelMarkerOptions opts);
+}
+
+@JS()
 class Control {
   external Control();
 }
@@ -98,6 +107,12 @@ class ToolBar extends Control {
 class AMapIcon {
   external AMapIcon(IconOptions options);
 }
+
+@JS('Text')
+class AMapText {
+  external AMapText(TextOptions options);
+}
+ 
 
 @JS()
 class Size {
@@ -173,18 +188,37 @@ class MarkerOptions {
 
 @JS()
 @anonymous
+class LabelMarkerOptions {
+  external factory LabelMarkerOptions({
+    /// 标注名称，作为标注标识，并非最终在地图上显示的文字内容，显示文字内容请设置 opts.text.content
+    String name,
+    /// 标注位置
+    LngLat position,
+    /// 同一 LabelsLayer 内标注显示层级，数字越大越靠前，默认值: 1
+    num zIndex,
+    /// 标注是否可见， 默认值: true
+    bool visible,
+    /// 用户自定义类型数据，可将自定义数据保存在该属性上，方便后续操作使用。
+    dynamic extData,
+    /// 标注图标设置
+    AMapIcon icon,
+    /// 标注文本设置
+    AMapText text
+  });
+}
+
+@JS()
+@anonymous
 class Label {
   external factory Label(
       {
-
       /// 标注内容
       String content,
-
       /// 文本标注方位 可选值：'top'|'right'|'bottom'|'left'|'center'，默认值: 'right'
       String direction,
-
       /// 偏移量
-      Pixel offset});
+      Pixel offset
+      });
 }
 
 @JS()
@@ -228,6 +262,16 @@ class IconOptions {
     Size size,
     String image,
     Size imageSize,
+  });
+}
+
+@JS()
+@anonymous
+class TextOptions {
+  external factory TextOptions({
+    String content,
+    Size direction,
+    Pixel offset
   });
 }
 
