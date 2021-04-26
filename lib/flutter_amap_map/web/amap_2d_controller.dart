@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:js/js.dart';
 
 import '../interface/amap_2d_controller.dart';
@@ -47,13 +49,10 @@ class AMap2DWebController extends AMap2DController {
     return _aMap;
   }
 
-  void setPosMarker(String lat, String lon, String title) {
+  void setPosMarker(String lat, String lon, String title) async {
     final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
-  
-    //_aMap.setCenter(lngLat);
-    
-    _aMap.setZoomAndCenter(18, lngLat, true, 500);
-    print('lat=${lngLat.getLat()}, lng=${lngLat.getLng()}');
+    num zoom = _aMap.getZoom();
+    print('lat=${lngLat.getLat()}, lng=${lngLat.getLng()}, zoom=$zoom');
     MarkerOptions markerOptions = new MarkerOptions(
         map: _aMap,
         title: title,
@@ -70,24 +69,15 @@ class AMap2DWebController extends AMap2DController {
           image:
               'https://a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
         )),
-        label: Label(content: '污水站点测试',offset: Pixel(-20,-20), direction: 'right'),
-        offset: Pixel(-10, -20),
-        anchor: 'bottom-right',
-        draggable: true);
-    // LabelMarkerOptions markerOptions = new LabelMarkerOptions(
-    //     name: title,
-    //     position: lngLat,
-    //     icon: AMapIcon(IconOptions(
-    //       size: Size(26, 34),
-    //       imageSize: Size(26, 34),
-    //       // image:
-    //       //     'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
-    //       image:
-    //           'https://a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
-    //     )),
-    //     text: AMapText(TextOptions(content: title))
-    //     );
+        label: Label(
+            content: '污水站点测试', offset: Pixel(-10, -10), direction: 'right'),
+        offset: Pixel(-13, -34),
+        zoom: zoom,
+        zIndex: 10,
+        //anchor: 'bottom-center',
+        draggable: false);
     _aMap.add(Marker(markerOptions));
+    //_aMap.addOverlay(markerOptions);
   }
 
   /// city：cityName（中文或中文全拼）、cityCode均可

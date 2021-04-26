@@ -18,7 +18,7 @@ class AMap2DViewState extends State<AMap2DView> {
     'AMap.PlaceSearch',
     'AMap.Scale',
     'AMap.ToolBar',
-    'AMap.LabelMarker'
+    'AMap.OverlayGroup'
     //'AMap.ElasticMarker'
   ];
 
