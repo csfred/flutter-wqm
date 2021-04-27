@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   //定位
                   //controller.location();
                   //检索地点
-                  //controller.search('雅逸新城', city: '西安');
+                  controller.search('雅逸新城', city: '西安');
                 },
               )),
         ]);

@@ -20,6 +20,12 @@ class AMap2DWebController extends AMap2DController {
       //_aMap.resize(); // 2.0无法自适应容器大小，需手动调用触发计算。
       LngLat lngLat = new LngLat(event.lnglat.getLng(), event.lnglat.getLat());
       //searchNearBy(lngLat);
+      List<dynamic> saveMarkerList = _aMap.getAllOverlays('marker');
+      if (saveMarkerList.isEmpty)
+        return;
+      // for (Marker marker in saveMarkerList) {
+      //     marker.setMap(null);
+      // }
       setPosMarker(
           lngLat.getLat().toString(), lngLat.getLng().toString(), '污水站点测试');
     }));
