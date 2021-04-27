@@ -21,11 +21,11 @@ class AMap2DWebController extends AMap2DController {
       LngLat lngLat = new LngLat(event.lnglat.getLng(), event.lnglat.getLat());
       //searchNearBy(lngLat);
       List<dynamic> saveMarkerList = _aMap.getAllOverlays('marker');
-      if (saveMarkerList.isEmpty)
-        return;
-      // for (Marker marker in saveMarkerList) {
-      //     marker.setMap(null);
-      // }
+      if (saveMarkerList.isNotEmpty) {
+        // for (Marker marker in saveMarkerList) {
+        //    marker.setMap(null);
+        // }
+      }
       setPosMarker(
           lngLat.getLat().toString(), lngLat.getLng().toString(), '污水站点测试');
     }));
@@ -80,7 +80,7 @@ class AMap2DWebController extends AMap2DController {
         offset: Pixel(-13, -34),
         zoom: zoom,
         zIndex: 10,
-        //anchor: 'bottom-center',
+        anchor: 'top-left',
         draggable: false);
     _aMap.add(Marker(markerOptions));
     //_aMap.addOverlay(markerOptions);
