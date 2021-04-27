@@ -10,9 +10,6 @@ import 'package:js/js.dart';
 class AMap {
   external AMap(dynamic /*String|DivElement*/ div, MapOptions opts);
 
-  /// 重新计算容器大小
-  external resize();
-
   /// 设置中心点
   external setCenter(LngLat center);
 
