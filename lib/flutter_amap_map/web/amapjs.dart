@@ -48,6 +48,8 @@ class AMap {
   /// type可缺省 null，缺省时返回所有覆盖物（marker、circle、polyline、polygon）。
   /// 返回结果不包含官方覆盖物等，比如定位marker，周边搜索圆等
   external getAllOverlays(String? type);
+
+  external setFitView();
 }
 
 @JS()

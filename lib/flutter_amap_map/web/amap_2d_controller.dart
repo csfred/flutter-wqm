@@ -28,6 +28,7 @@ class AMap2DWebController extends AMap2DController {
       }
       setPosMarker(
           lngLat.getLat().toString(), lngLat.getLng().toString(), '污水站点测试');
+      _aMap.setFitView();
     }));
 
     /// 定位插件初始化
