@@ -1,4 +1,6 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:js_util';
 import 'dart:ui' as ui;
 
@@ -29,7 +31,7 @@ class AMap2DViewState extends State<AMap2DView> {
   void _onPlatformViewCreated() {
     final Object promise = load(LoaderOptions(
       key: Flutter2dAMap.webKey,
-      version: '1.4.15', // 2.0需要修改GeolocationOptions属性
+      version: '1.4.16', // 2.0需要修改GeolocationOptions属性
       plugins: plugins,
     )) as Object;
 

@@ -16,19 +16,47 @@ class AMap2DWebController extends AMap2DController {
       pageSize: 50,
     );
 
+    _aMap.on('mousemove	', allowInterop((event) {
+    }));
+
+    _aMap.on('mouseover	', allowInterop((event) {
+    }));
+
+    _aMap.on('rightclick	', allowInterop((event) {
+    }));
+
+    _aMap.on('dblclick	', allowInterop((event) {
+    })); 
+    
+    _aMap.on('mouseup	', allowInterop((event) {
+    })); 
+    
+    _aMap.on('dragstart	', allowInterop((event) {
+    }));
+    
+    _aMap.on('moving', allowInterop((event) {
+    }));
+    
+    _aMap.on('moveend', allowInterop((event) {
+    }));
+
     _aMap.on('click', allowInterop((event) {
+      clickNum++;
       //_aMap.resize(); // 2.0无法自适应容器大小，需手动调用触发计算。
       LngLat lngLat = new LngLat(event.lnglat.getLng(), event.lnglat.getLat());
       //searchNearBy(lngLat);
-      List<dynamic> saveMarkerList = _aMap.getAllOverlays('marker');
-      if (saveMarkerList.isNotEmpty) {
-        // for (Marker marker in saveMarkerList) {
-        //    marker.setMap(null);
-        // }
-      }
       setPosMarker(
           lngLat.getLat().toString(), lngLat.getLng().toString(), '污水站点测试');
-      _aMap.setFitView();
+      List<dynamic> saveMarkerList = _aMap.getAllOverlays('marker');
+      if (saveMarkerList.isNotEmpty) {
+        for (Marker marker in saveMarkerList) {
+          //  if(marker.getTitle() == null ){
+          //    marker.setMap(null);
+          //  }else{
+          //    print('marker lat=${marker.getPosition().getLat()}, marker lng=${marker.getPosition().getLng()}, title=${marker.getTitle()}');
+          //  }
+        }
+      }
     }));
 
     /// 定位插件初始化
@@ -46,6 +74,8 @@ class AMap2DWebController extends AMap2DController {
   final AMap2DView _widget;
   final AMap _aMap;
 
+  int clickNum = 0;
+
   late Geolocation _geolocation;
   MarkerOptions? _markerOptions;
   late PlaceSearchOptions _placeSearchOptions;
@@ -56,18 +86,15 @@ class AMap2DWebController extends AMap2DController {
     return _aMap;
   }
 
-  void setPosMarker(String lat, String lon, String title) async {
+  void setPosMarker(String lat, String lon, String title) {
     final LngLat lngLat = LngLat(double.parse(lon), double.parse(lat));
     num zoom = _aMap.getZoom();
     print('lat=${lngLat.getLat()}, lng=${lngLat.getLng()}, zoom=$zoom');
     MarkerOptions markerOptions = new MarkerOptions(
         map: _aMap,
-        title: title,
+        title: title + clickNum.toString(),
         position: lngLat,
-        // content: '<div class="custom-content-marker">' +
-        //     '   <img src="https//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png">' +
-        //     '   <div class="close-btn" οnclick="clearMarker()">X</div>' +
-        //     '</div>',
+        //content: '<div style="border:1px solid #ccc;background:#fff;white-space:nowrap; padding:3px;font-size:14px;"> 我就是文字标注啦，用自定义点标记做成</div>',
         icon: AMapIcon(IconOptions(
           size: Size(26, 34),
           imageSize: Size(26, 34),
@@ -82,8 +109,9 @@ class AMap2DWebController extends AMap2DController {
         zoom: zoom,
         zIndex: 10,
         anchor: 'top-left',
-        draggable: false);
-    _aMap.add(Marker(markerOptions));
+        draggable: true);
+    Marker marker = Marker(markerOptions);
+    _aMap.add(marker);
     //_aMap.addOverlay(markerOptions);
   }
 

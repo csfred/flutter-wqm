@@ -90,6 +90,9 @@ class Pixel {
 class Marker {
   external Marker(MarkerOptions opts);
   external setMap(AMap? aMap);
+  external setPosition(LngLat lngLat);
+  external LngLat getPosition();
+  external String getTitle();
 }
 
 @JS()
