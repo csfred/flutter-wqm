@@ -36,3 +36,9 @@ git config --global --unset https.proxy
 高德地图开发指南
 https://developer.amap.com/api/javascript-api/guide/abc/plugins
 
+FL Chart  比较好的图形库
+地址：https://github.com/imaNNeoFighT/fl_chart
+
+flutter比较火的开源项目
+https://www.cnblogs.com/xichji/p/13343180.html
+

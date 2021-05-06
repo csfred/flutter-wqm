@@ -1,8 +1,6 @@
 @JS('AMap')
 library amap;
 
-import 'dart:html';
-
 import 'package:js/js.dart';
 
 /// 高德地图js，文档：https://lbs.amap.com/api/javascript-api/guide/abc/prepare

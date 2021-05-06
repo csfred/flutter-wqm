@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/pages/max_screen.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -245,7 +246,8 @@ class _LoginPageState extends State<LoginPage> {
                   setState(() {});
                   Navigator.of(context).pushAndRemoveUntil(
                       new MaterialPageRoute(
-                          builder: (context) => new HomePage()),
+                          builder: (context) => new MaxScreenPage()),
+                          //builder: (context) => new HomePage()),
                       // ignore: unnecessary_null_comparison
                       (route) => route == null);
                 }

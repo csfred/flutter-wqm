@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web/flutter_amap_map/flutter_2d_amap.dart';
 import 'package:flutter_web/side_bar.dart';
@@ -10,6 +11,7 @@ import '../utils/line_chars.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
+
 }
 
 class _HomePageState extends State<HomePage> {
@@ -31,6 +33,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     Widget widget = Scaffold(
       appBar: AppBar(
         title: Text(
@@ -51,6 +54,7 @@ class _HomePageState extends State<HomePage> {
 
   /// 构建主界面
   Widget _buildHomeWidget() {
+
     return Column(
         //纵向显示 统计量  折线图  图表（雷达图，饼状图，柱状图）
         children: <Widget>[

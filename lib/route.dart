@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/pages/max_screen.dart';
 
 import 'pages/device_opt.dart';
 import 'pages/home.dart';
@@ -8,6 +9,7 @@ import 'pages/station_map.dart';
 import 'pages/user_manage.dart';
 
 final routes = {
+  '/MaxScreen': (context) => MaxScreenPage(), //大屏展示
   '/Home': (context) => HomePage(), //首页
   '/StationMap': (context) => StationMapPage(), //站点地图
   '/StationEdit': (context) => StationEditPage(), //站点编辑

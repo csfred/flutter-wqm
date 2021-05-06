@@ -37,6 +37,8 @@ dependencies:
   shared_preferences: ^0.5.6 #cacheUtils
   charts_flutter: ^0.10.0
 
+  fl_chart: ^0.36.0
+
   #dart 调用 js 封装高德地图
   js: ^0.6.3
 
@@ -66,7 +68,7 @@ flutter:
   assets:
     - images/main.jpg
     - images/water_icon.png
-
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
