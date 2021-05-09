@@ -15,6 +15,8 @@
 		transition:all linear 0.30s;
 		
 		position:absolute;
+
+		z-index: 2;
 		
 		left:10px;
 		top:30px;

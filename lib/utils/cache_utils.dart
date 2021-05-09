@@ -3,9 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheUtils {
   // 存储token
-  static const String keyToken = 'xxxxxxxxxTK';
+  static const String keyToken = 'admin_token';
   // 存储用户名
-  static const String keyUserName = 'xxxxxxxxxUserName';
+  static const String keyUserName = 'admin';
 
   static Future<bool> getLoginState() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
@@ -15,5 +15,12 @@ class CacheUtils {
       return false;
     }
     return true;
+  }
+
+  static Future<void> setLogin(String userName) async {
+    if(userName == keyUserName){
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      sp.setString(keyToken, "flutter##"+userName+DateTime.now().toIso8601String());
+    }
   }
 }

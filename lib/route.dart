@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/pages/max_screen.dart';
+import 'package:flutter_web/pages/home.dart';
 
 import 'pages/device_opt.dart';
-import 'pages/home.dart';
 import 'pages/report.dart';
 import 'pages/station_edit.dart';
 import 'pages/station_map.dart';
 import 'pages/user_manage.dart';
 
 final routes = {
-  '/MaxScreen': (context) => MaxScreenPage(), //大屏展示
   '/Home': (context) => HomePage(), //首页
   '/StationMap': (context) => StationMapPage(), //站点地图
   '/StationEdit': (context) => StationEditPage(), //站点编辑
   '/DeviceOpt': (context) => DeviceOptPage(), //设备操作
   '/Report': (context) => ReportPage(), //报表
   '/UserManage': (context) => UserManagePage(), //用户管理
+  '/AddStation': (context) => Dialog(backgroundColor: Colors.blueGrey,
+    )
 };
 
 // ignore: top_level_function_literal_block

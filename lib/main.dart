@@ -4,7 +4,7 @@ import 'package:flutter_web/utils/cache_utils.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'flutter_amap_map/flutter_2d_amap.dart';
-import 'side_bar.dart';
+import 'pages/home.dart';
 import 'route.dart';
 //import './utils/responsive_widget.dart';
 
@@ -25,7 +25,7 @@ class _MainAppState extends State<MainApp> {
   bool _isLogin = false;
 
   _getLoginState() async {
-    _isLogin = await CacheUtils.getLoginState();
+   _isLogin = await CacheUtils.getLoginState();
   }
 
   @override
@@ -48,8 +48,6 @@ class _MainAppState extends State<MainApp> {
      */
     //ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
 
-    //_isLogin = true;
-
     return MaterialApp(
       debugShowCheckedModeBanner: false, //去掉Debug图标
       theme: ThemeData(
@@ -59,24 +57,25 @@ class _MainAppState extends State<MainApp> {
       onGenerateRoute: onGenerateRoute,
       home: !_isLogin
           ? LoginPage()
-          : Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  '污水处理在线监测平台',
-                  textAlign: TextAlign.center,
-                ),
-                centerTitle: true,
-              ),
-              body: Container(
-                  child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 1024, vertical: 768),
-              )),
-              drawer: Builder(
-                builder: (context) => Drawer(
-                  child: SideBar(),
-                ),
-              ),
-            ),
+          : HomePage()
+          // : Scaffold(
+          //     appBar: AppBar(
+          //       title: Text(
+          //         '污水处理在线监测平台',
+          //         textAlign: TextAlign.center,
+          //       ),
+          //       centerTitle: true,
+          //     ),
+          //     body: Container(
+          //         child: Padding(
+          //       padding: EdgeInsets.symmetric(horizontal: 1024, vertical: 768),
+          //     )),
+          //     drawer: Builder(
+          //       builder: (context) => Drawer(
+          //         child: SideBar(),
+          //       ),
+          //     ),
+          //   ),
     );
   }
 }

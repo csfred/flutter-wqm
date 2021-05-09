@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/pages/max_screen.dart';
+import 'package:flutter_web/pages/home.dart';
+import 'package:flutter_web/utils/cache_utils.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:fluttertoast/fluttertoast.dart';
-
-import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -244,10 +243,10 @@ class _LoginPageState extends State<LoginPage> {
                   _userNameFocusNode.unfocus();
                   _pwdFocusNode.unfocus();
                   setState(() {});
+                  CacheUtils.setLogin("admin");
                   Navigator.of(context).pushAndRemoveUntil(
                       new MaterialPageRoute(
-                          builder: (context) => new MaxScreenPage()),
-                          //builder: (context) => new HomePage()),
+                          builder: (context) => new HomePage()),
                       // ignore: unnecessary_null_comparison
                       (route) => route == null);
                 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/flutter_amap_map/amap_2d_view.dart';
 import 'package:flutter_web/side_bar.dart';
 
 class StationMapPage extends StatefulWidget {
@@ -21,14 +22,19 @@ class _StationMapPageState extends State<StationMapPage> {
         centerTitle: true,
       ),
       body: Container(
-        width: 1000.0,
-        height: 100.0,
-        child: Center(
-          child: Text(
-            '欢迎来到站点地图',
-            textAlign: TextAlign.center,
-          ),
-        ),
+          padding: const EdgeInsets.all(10.0),
+          margin: const EdgeInsets.all(10.0),
+          width: 2000,
+          height: 900,
+          child: AMap2DView(
+            onPoiSearched: (result) {},
+            onAMap2DViewCreated: (controller) {
+              //定位
+              //controller.location();
+              //检索地点
+              controller.search('雅逸新城', city: '西安');
+            },
+          )
       ),
       drawer: Builder(
         builder: (context) => Drawer(
