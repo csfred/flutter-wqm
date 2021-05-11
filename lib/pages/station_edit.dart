@@ -10,6 +10,7 @@ class _StationEditPageState extends State<StationEditPage> {
   String url = "";
 
   late TextEditingController _stationNameController;
+  late TextEditingController _serialController;
   late TextEditingController _latEditController;
   late TextEditingController _lonEditController;
 
@@ -18,10 +19,12 @@ class _StationEditPageState extends State<StationEditPage> {
     super.initState();
 
     _stationNameController = TextEditingController();
+    _serialController = TextEditingController();
     _latEditController = TextEditingController();
     _lonEditController = TextEditingController();
 
     _stationNameController.addListener(() => setState(() => {}));
+    _serialController.addListener(() => setState(() => {}));
     _latEditController.addListener(() => setState(() => {}));
     _lonEditController.addListener(() => setState(() => {}));
   }
@@ -42,38 +45,14 @@ class _StationEditPageState extends State<StationEditPage> {
                   child: Column( // 定义垂直布局
                     mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
                     children: <Widget>[
-                      Container(
-                        child: Row(
-                          // 站点名称
-                          children: <Widget>[
-                            _buildText("站点名称:"),
-                            SizedBox(width: 10),
-                            _buildCustomTextField("请输入站点名称", _stationNameController),
-                          ]
-                        ),
-                      ),
+                      // 站点名称
+                      _buildDialogItem("站点名称:","请输入站点名称", _stationNameController),
                       SizedBox(height: 30),
-                      Container(
-                        child: Row(
-                          // 触发关闭窗口
-                          children: <Widget>[
-                            _buildText("经      度: "),
-                            SizedBox(width: 10),
-                            _buildCustomTextField("请输入经度", _latEditController),
-                          ]
-                        ),
-                      ),
+                      _buildDialogItem("序 列 号:","请输入序列号", _serialController),
                       SizedBox(height: 30),
-                      Container(
-                        child: Row(
-                          // 触发关闭窗口
-                          children: <Widget>[
-                            _buildText("纬      度: "),
-                            SizedBox(width: 10),
-                            _buildCustomTextField("请输入纬度", _lonEditController),
-                          ]
-                        ),
-                      ),
+                      _buildDialogItem("经    度:","请输入经度", _latEditController),
+                      SizedBox(height: 30),
+                      _buildDialogItem("纬    度:","请输入纬度", _lonEditController),
                     ]
                   ),
                 ),
@@ -95,12 +74,28 @@ class _StationEditPageState extends State<StationEditPage> {
     );
   }
 
-  Text _buildText(String label){
-    return Text(label,
-            style: TextStyle(
-            fontSize: 25,
-            color: Colors.black,
-            fontWeight: FontWeight.w100),
+  Container _buildDialogItem(String label, String title, TextEditingController controller){
+    return Container(
+            child: Row(
+              children: <Widget>[
+                _buildText(label),
+                SizedBox(width: 10),
+                _buildCustomTextField(title, controller),
+              ]
+            ),
+          );
+  }
+
+  Container _buildText(String label){
+    return Container(
+      width: 150,
+        child:Text(label,
+              style: TextStyle(
+              fontSize: 25,
+              letterSpacing:5,
+              color: Colors.black,
+              fontWeight: FontWeight.w100),
+        )
       );
   }
 
@@ -126,7 +121,8 @@ class _StationEditPageState extends State<StationEditPage> {
                   border: InputBorder.none,
                 ),
                  style: TextStyle(fontSize: 26),
-                obscureText: true,
+                 //文本是否隐藏
+                obscureText: false,
               ),
             )
           ],
