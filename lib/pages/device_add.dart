@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DeviceOptPage extends StatefulWidget {
+class DeviceAddPage extends StatefulWidget {
   @override
-  _DeviceOptPageState createState() => _DeviceOptPageState();
+  _DeviceAddPageState createState() => _DeviceAddPageState();
 }
 
-class _DeviceOptPageState extends State<DeviceOptPage> {
+class _DeviceAddPageState extends State<DeviceAddPage> {
   double progress = 0;
   String url = "";
 
@@ -30,7 +30,7 @@ class _DeviceOptPageState extends State<DeviceOptPage> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))
+            borderRadius: BorderRadius.all(Radius.circular(30))
         ),
       backgroundColor: Colors.amber[50],
       child: Container(
@@ -134,7 +134,7 @@ class _DeviceOptPageState extends State<DeviceOptPage> {
       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
       padding: EdgeInsets.all(0),
       //width: MediaQuery.of(context).size.width - 20,
-      width: 200,
+      width: 120,
       height: 60,
       child: Container(
         height: 45,

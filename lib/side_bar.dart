@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class SideBar extends StatelessWidget {
   final double defaultFontSize = 22;
-  final double defaultSecondFontSize = 18;
+  final double defaultSecondFontSize = 20;
+  final double defaultThirdFontSize = 18;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,14 +48,29 @@ class SideBar extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context,  '/StationEdit')
             ),
             SizedBox(height: 10),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.devices),
-              ),
-              title: Text("设备操作", style: TextStyle(fontSize: defaultSecondFontSize)),
-              onTap: () => Navigator.pushNamed(context, "/DeviceOpt"),
-            ),
-            SizedBox(height: 30),
+            ExpansionTile(title: Text("设备", style: TextStyle(fontSize: defaultFontSize)),
+                  leading: CircleAvatar(
+                  child: Icon(Icons.devices),
+                ),
+                children: [
+                  SizedBox(height: 10),
+                  ListTile(
+                    leading: CircleAvatar(
+                      child: Icon(Icons.devices),
+                    ),
+                    title: Text("新增设备", style: TextStyle(fontSize: defaultThirdFontSize)),
+                    onTap: () => Navigator.pushNamed(context, "/AddDevice"),
+                  ),
+                  SizedBox(height: 10),
+                  ListTile(
+                    leading: CircleAvatar(
+                      child: Icon(Icons.devices),
+                    ),
+                    title: Text("设备列表", style: TextStyle(fontSize: defaultThirdFontSize)),
+                    onTap: () => Navigator.pushNamed(context, "/ListDevice"),
+                  )
+                ]
+            )
           ],
         ),
         Divider(),

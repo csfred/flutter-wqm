@@ -42,7 +42,7 @@ class _StationEditPageState extends State<StationEditPage> {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))
+            borderRadius: BorderRadius.all(Radius.circular(30))
         ),
       backgroundColor: Colors.amber[50],
       child: Container(
@@ -80,9 +80,9 @@ class _StationEditPageState extends State<StationEditPage> {
                   child: Row(
                     // 触发关闭窗口
                     children: <Widget>[
-                      _buildButton('保 存A',0),
+                      _buildButton('保 存',0),
                       SizedBox(width: 10),
-                      _buildButton('取 消B',1),
+                      _buildButton('取 消',1),
                       SizedBox(width: 10),
                       _buildButton('添加底图',1)
                     ]
@@ -131,7 +131,7 @@ class _StationEditPageState extends State<StationEditPage> {
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: 85,
+              left: 55,
               right: 10,
               top: 10,
               height: 55,
@@ -156,7 +156,7 @@ class _StationEditPageState extends State<StationEditPage> {
       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
       padding: EdgeInsets.all(0),
       //width: MediaQuery.of(context).size.width - 20,
-      width: 50,
+      width: 180,
       height: 60,
       child: Container(
         height: 45,
