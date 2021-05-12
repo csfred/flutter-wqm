@@ -9,8 +9,11 @@ class _StationEditPageState extends State<StationEditPage> {
   double progress = 0;
   String url = "";
 
-  late TextEditingController _stationNameController;
-  late TextEditingController _serialController;
+  late TextEditingController _stationNameEditController;
+  late TextEditingController _stationIdEditController;
+  late TextEditingController _scaleEditController;
+  late TextEditingController _staffEditController;
+  late TextEditingController _addressEditController;
   late TextEditingController _latEditController;
   late TextEditingController _lonEditController;
 
@@ -18,13 +21,19 @@ class _StationEditPageState extends State<StationEditPage> {
   void initState(){
     super.initState();
 
-    _stationNameController = TextEditingController();
-    _serialController = TextEditingController();
+    _stationNameEditController = TextEditingController();
+    _stationIdEditController = TextEditingController();
+    _scaleEditController = TextEditingController();
+    _staffEditController = TextEditingController();
+    _addressEditController = TextEditingController();
     _latEditController = TextEditingController();
     _lonEditController = TextEditingController();
 
-    _stationNameController.addListener(() => setState(() => {}));
-    _serialController.addListener(() => setState(() => {}));
+    _stationNameEditController.addListener(() => setState(() => {}));
+    _stationIdEditController.addListener(() => setState(() => {}));
+    _scaleEditController.addListener(() => setState(() => {}));
+    _staffEditController.addListener(() => setState(() => {}));
+    _addressEditController.addListener(() => setState(() => {}));
     _latEditController.addListener(() => setState(() => {}));
     _lonEditController.addListener(() => setState(() => {}));
   }
@@ -32,7 +41,11 @@ class _StationEditPageState extends State<StationEditPage> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-     child: Container(
+      shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))
+        ),
+      backgroundColor: Colors.amber[50],
+      child: Container(
         width: 800,
         height: 1000,
         margin: EdgeInsets.all(10),
@@ -46,9 +59,15 @@ class _StationEditPageState extends State<StationEditPage> {
                     mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
                     children: <Widget>[
                       // 站点名称
-                      _buildDialogItem("站点名称:","请输入站点名称", _stationNameController),
+                      _buildDialogItem("站点名称:","请输入站点名称", _stationNameEditController),
                       SizedBox(height: 30),
-                      _buildDialogItem("序 列 号:","请输入序列号", _serialController),
+                      _buildDialogItem("站点编号:","请输入站点编号", _stationIdEditController),
+                      SizedBox(height: 30),
+                      _buildDialogItem("规    模:","请输入规模", _scaleEditController),
+                      SizedBox(height: 30),
+                      _buildDialogItem("人    员:","请输入人员", _staffEditController),
+                      SizedBox(height: 30),
+                      _buildDialogItem("地    址:","请输入地址", _addressEditController),
                       SizedBox(height: 30),
                       _buildDialogItem("经    度:","请输入经度", _latEditController),
                       SizedBox(height: 30),
@@ -61,9 +80,11 @@ class _StationEditPageState extends State<StationEditPage> {
                   child: Row(
                     // 触发关闭窗口
                     children: <Widget>[
-                      _buildButton('保存',0),
-                      SizedBox(width: 30),
-                      _buildButton('取消',1)
+                      _buildButton('保 存A',0),
+                      SizedBox(width: 10),
+                      _buildButton('取 消B',1),
+                      SizedBox(width: 10),
+                      _buildButton('添加底图',1)
                     ]
                   ) 
                 )
@@ -101,24 +122,25 @@ class _StationEditPageState extends State<StationEditPage> {
 
   Widget _buildCustomTextField(String label, TextEditingController controller) {
     return Container(
-        width: 300,
-        height: 60,
+        width: 400,
+        height: 65,
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: 55,
+              left: 85,
               right: 10,
               top: 10,
-              height: 30,
+              height: 55,
               child: TextField(
                 controller: controller,
                 decoration: InputDecoration(
                   hintText: label,
                   border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 20.0),
                 ),
                  style: TextStyle(fontSize: 26),
                  //文本是否隐藏
@@ -131,13 +153,13 @@ class _StationEditPageState extends State<StationEditPage> {
 
   Widget _buildButton(String label, int type) {
     return Container(
-      margin: EdgeInsets.only(top: 40, left: 10, right: 10),
+      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
       padding: EdgeInsets.all(0),
       //width: MediaQuery.of(context).size.width - 20,
-      width: 300,
+      width: 50,
       height: 60,
       child: Container(
-        height: 44,
+        height: 45,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
           color: Colors.lightBlue.withOpacity(0.1),
@@ -149,6 +171,9 @@ class _StationEditPageState extends State<StationEditPage> {
                 Navigator.of(context, rootNavigator: true).pop();
               }
               if(type == 1){
+                Navigator.of(context, rootNavigator: true).pop();
+              }
+              if(type == 2){
                 Navigator.of(context, rootNavigator: true).pop();
               }
             },
