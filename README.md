@@ -23,7 +23,7 @@ https://console.amap.com/dev/key/app 高德地图开发平台
 
 flutter run -d chrome --release --web-renderer html --no-sound-null-safety 
 不指定浏览器,作为服务端启动, 指定端口8091
-flutter run --release --web-renderer html --no-sound-null-safety -d web-server  --web-port 8091
+flutter run --release --web-renderer html --no-sound-null-safety -d web-server   --web-hostname=127.0.0.1 --web-port 8091
 
 git 设置代理
 git config --global http.proxy 'http://proxyIpAddr:port'
