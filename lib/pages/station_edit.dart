@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_drag_scale/flutter_drag_scale.dart';
+
 class StationEditPage extends StatefulWidget {
   @override
   _StationEditPageState createState() => _StationEditPageState();
@@ -40,59 +43,60 @@ class _StationEditPageState extends State<StationEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30))
-        ),
-      backgroundColor: Colors.amber[50],
-      child: Container(
-        width: 800,
-        height: 1000,
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: Column( // 定义垂直布局
-              mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
-              children: <Widget>[
-                Container(
-                  child: Column( // 定义垂直布局
-                    mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
-                    children: <Widget>[
-                      // 站点名称
-                      _buildDialogItem("站点名称:","请输入站点名称", _stationNameEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("站点编号:","请输入站点编号", _stationIdEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("规    模:","请输入规模", _scaleEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("人    员:","请输入人员", _staffEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("地    址:","请输入地址", _addressEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("经    度:","请输入经度", _latEditController),
-                      SizedBox(height: 30),
-                      _buildDialogItem("纬    度:","请输入纬度", _lonEditController),
-                    ]
-                  ),
-                ),
-                SizedBox(height: 30),
-                Container(
-                  child: Row(
-                    // 触发关闭窗口
-                    children: <Widget>[
-                      _buildButton('保 存',0),
-                      SizedBox(width: 10),
-                      _buildButton('取 消',1),
-                      SizedBox(width: 10),
-                      _buildButton('添加底图',1)
-                    ]
-                  ) 
-                )
-              ]
-          ),
-        )
-     )
-    );
+    return dragScale(context);
+    // return Dialog(
+    //   shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.all(Radius.circular(30))
+    //     ),
+    //   backgroundColor: Colors.amber[50],
+    //   child: Container(
+    //     width: 800,
+    //     height: 1000,
+    //     margin: EdgeInsets.all(10),
+    //     padding: EdgeInsets.all(10),
+    //     child: Center(
+    //       child: Column( // 定义垂直布局
+    //           mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
+    //           children: <Widget>[
+    //             Container(
+    //               child: Column( // 定义垂直布局
+    //                 mainAxisAlignment: MainAxisAlignment.center, // 主轴居中布局，相关介绍可以搜下flutter-ui的内容
+    //                 children: <Widget>[
+    //                   // 站点名称
+    //                   _buildDialogItem("站点名称:","请输入站点名称", _stationNameEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("站点编号:","请输入站点编号", _stationIdEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("规    模:","请输入规模", _scaleEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("人    员:","请输入人员", _staffEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("地    址:","请输入地址", _addressEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("经    度:","请输入经度", _latEditController),
+    //                   SizedBox(height: 30),
+    //                   _buildDialogItem("纬    度:","请输入纬度", _lonEditController),
+    //                 ]
+    //               ),
+    //             ),
+    //             SizedBox(height: 30),
+    //             Container(
+    //               child: Row(
+    //                 // 触发关闭窗口
+    //                 children: <Widget>[
+    //                   _buildButton('保 存',0),
+    //                   SizedBox(width: 10),
+    //                   _buildButton('取 消',1),
+    //                   SizedBox(width: 10),
+    //                   _buildButton('添加底图',1)
+    //                 ]
+    //               ) 
+    //             )
+    //           ]
+    //       ),
+    //     )
+    //  )
+    // );
   }
 
   Container _buildDialogItem(String label, String title, TextEditingController controller){
@@ -174,7 +178,8 @@ class _StationEditPageState extends State<StationEditPage> {
                 Navigator.of(context, rootNavigator: true).pop();
               }
               if(type == 2){
-                Navigator.of(context, rootNavigator: true).pop();
+                //Navigator.of(context, rootNavigator: true).pop();
+                //dragScale();
               }
             },
             child: Text(
@@ -182,6 +187,26 @@ class _StationEditPageState extends State<StationEditPage> {
               style: TextStyle(color: Colors.black, fontSize: 28),
             )),
       ),
+    );
+  }
+
+  ///item 视图
+  Widget dragScale(BuildContext context) {
+    return Container(
+      width: 500,
+      height: 500,
+      child: Dialog(
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30))
+        ),
+        child: DragScaleContainer(
+          doubleTapStillScale: true,
+          child: new Image(
+            image: new NetworkImage(
+                'http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg'),
+          ),
+        ),
+      )
     );
   }
 }
