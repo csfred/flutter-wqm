@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_drag_scale/flutter_drag_scale.dart';
+import 'package:gesture_zoom_box/gesture_zoom_box.dart';
 
 class StationEditPage extends StatefulWidget {
   @override
@@ -43,7 +42,7 @@ class _StationEditPageState extends State<StationEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return dragScale(context);
+    return _gestureZoomBox(context);
     // return Dialog(
     //   shape: RoundedRectangleBorder(
     //         borderRadius: BorderRadius.all(Radius.circular(30))
@@ -191,22 +190,13 @@ class _StationEditPageState extends State<StationEditPage> {
   }
 
   ///item 视图
-  Widget dragScale(BuildContext context) {
-    return Container(
-      width: 500,
-      height: 500,
-      child: Dialog(
-            shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30))
-        ),
-        child: DragScaleContainer(
-          doubleTapStillScale: true,
-          child: new Image(
-            image: new NetworkImage(
-                'http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg'),
-          ),
-        ),
-      )
+  Widget _gestureZoomBox(BuildContext context) {
+    return  GestureZoomBox(
+      maxScale: 5.0,
+      doubleTapScale: 1.5,
+      duration: Duration(milliseconds: 200),
+      onPressed: () => Navigator.pop(context),
+      child: Image.network('http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg')
     );
   }
 }

@@ -24,10 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #图片拖拽，缩放
-  flutter_drag_scale:
-    git: https://github.com/LiuC520/flutter_drag_scale.git
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -51,6 +47,9 @@ dependencies:
   #flutter_baidu_mapapi_search: ^2.0.1  #百度地图检索插件
   #flutter_baidu_mapapi_utils: ^2.0.1   #百度地图计算工具插件
   #share: ^0.6.1+1
+
+  #图片缩放平移
+  gesture_zoom_box: ^0.0.3
 
 dev_dependencies:
   flutter_test:

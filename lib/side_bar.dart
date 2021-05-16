@@ -58,8 +58,8 @@ class SideBar extends StatelessWidget {
                     leading: CircleAvatar(
                       child: Icon(Icons.devices),
                     ),
-                    title: Text("新增设备", style: TextStyle(fontSize: defaultThirdFontSize)),
-                    onTap: () => Navigator.pushNamed(context, "/AddDevice"),
+                    title: Text("设备底图绘制", style: TextStyle(fontSize: defaultThirdFontSize)),
+                    onTap: () => Navigator.pushNamed(context, "/DeviceImageCanvas"),
                   ),
                   SizedBox(height: 10),
                   ListTile(

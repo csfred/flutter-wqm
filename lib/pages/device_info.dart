@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DeviceAddPage extends StatefulWidget {
+class DeviceInfoPage extends StatefulWidget {
   @override
-  _DeviceAddPageState createState() => _DeviceAddPageState();
+  _DeviceInfoPageState createState() => _DeviceInfoPageState();
 }
 
-class _DeviceAddPageState extends State<DeviceAddPage> {
+class _DeviceInfoPageState extends State<DeviceInfoPage> {
   double progress = 0;
   String url = "";
 
