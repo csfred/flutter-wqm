@@ -7,7 +7,11 @@ class ImageMaterialItem extends StatelessWidget {
 
   late DeviceImageCanvas deviceImageCanvas;
 
-  ImageMaterialItem({Key? key,  required this.data, required this.deviceImageCanvas}) : super(key: key);
+  ImageMaterialItem({Key? key,  required this.data}) : super(key: key);
+
+  void setDeviceImageCanvas(DeviceImageCanvas imageCanvas){
+    this.deviceImageCanvas = imageCanvas;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class ImageMaterialItem extends StatelessWidget {
       onTap: () {
         //处理点击事件
         //print("image url = "+ this.data.imgUrl);
-        deviceImageCanvas..setSelectImgUrl(this.data.imgUrl);
+        deviceImageCanvas.setSelectImgUrl(this.data.imgUrl);
       },
       child: Container(
         alignment: Alignment.center,

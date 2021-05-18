@@ -24,7 +24,7 @@ class DeviceImageCanvas extends StatefulWidget {
 
 class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
 
-  DeviceImageCanvas _deviceImageCanvas = DeviceImageCanvas();
+  late DeviceImageCanvas _deviceImageCanvas;
 
  
   static final String _imgUrl = 'http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg';
@@ -41,7 +41,6 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           imgUrl: _imgUrl,
           title: '设备1',
           ),
-      deviceImageCanvas: _deviceImageCanvas,
     ),
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
@@ -71,6 +70,9 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
   
   @override
   Widget build(BuildContext context) {
+    for (ImageMaterialItem item in imageMaterialList) {
+      item.setDeviceImageCanvas(_deviceImageCanvas);
+    }
    return Scaffold(
       appBar: AppBar(
         title: Text(
