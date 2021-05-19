@@ -10,69 +10,82 @@ import '../side_bar.dart';
 // ignore: must_be_immutable
 class DeviceImageCanvas extends StatefulWidget {
 
-  late _DeviceImageCanvasState canvasState = _DeviceImageCanvasState(this);
-
-  late String _selectImgUrl = '';
-
-  void setSelectImgUrl(String imgUrl){
-   this. _selectImgUrl = imgUrl;
-  }
+  late _DeviceImageCanvasState canvasState = _DeviceImageCanvasState();
   
   @override
   _DeviceImageCanvasState createState() => canvasState;
 }
 
+typedef SelectedCallback = void Function(String imgUrl);
+
 class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
 
-  late DeviceImageCanvas _deviceImageCanvas;
+
+  static String selectedImgUrl = "";
 
  
   static final String _imgUrl = 'http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg';
 
-  
-
-  _DeviceImageCanvasState(DeviceImageCanvas deviceImageCanvas){
-    _deviceImageCanvas = deviceImageCanvas;
-  }
 
   List<ImageMaterialItem> imageMaterialList = [
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
           title: '设备1',
-          ),
+          onClicked: (imgUrl){
+            selectedImgUrl = imgUrl;
+            print("设备1 url="+selectedImgUrl);
+          }
+        ),
     ),
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
-          title: '设备2'
-          ),
+          title: '设备2',
+          onClicked: (imgUrl){
+            // setSelectedUrl(imgUrl);
+            selectedImgUrl = imgUrl;
+            print("设备2 url="+selectedImgUrl);
+          }
+        ),
     ),
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
-          title: '设备3'
-          ),
+          title: '设备3',
+          onClicked: (imgUrl){
+            // setSelectedUrl(imgUrl);
+            selectedImgUrl = imgUrl;
+            print("设备3 url="+selectedImgUrl);
+          }
+        ),
     ),
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
-          title: '设备5'
-          ),
+          title: '设备4',
+          onClicked: (imgUrl){
+            // setSelectedUrl(imgUrl);
+            selectedImgUrl = imgUrl;
+            print("设备4 url="+selectedImgUrl);
+          }
+        ),
     ),
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
-          title: '设备6'
-          ),
+          title: '设备5',
+          onClicked: (imgUrl){
+            // setSelectedUrl(imgUrl);
+            selectedImgUrl = imgUrl;
+            print("设备5 url="+selectedImgUrl);
+          }
+        ),
     ),
   ];
   
   @override
   Widget build(BuildContext context) {
-    for (ImageMaterialItem item in imageMaterialList) {
-      item.setDeviceImageCanvas(_deviceImageCanvas);
-    }
    return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -86,8 +99,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           children: <Widget>[
             //画布区域
             Container(
-              width: 1000,
-              child: Text('画布'),
+              child: Image.network(selectedImgUrl),
             ),
             Divider(height: 10, color: Colors.lightGreen,),
             //素材展示区域

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/pages/device_image_canvas.dart';
 
 // ignore: must_be_immutable
 class ImageMaterialItem extends StatelessWidget {
   final ImageMaterialItemViewModel data;
 
-  late DeviceImageCanvas deviceImageCanvas;
 
   ImageMaterialItem({Key? key,  required this.data}) : super(key: key);
-
-  void setDeviceImageCanvas(DeviceImageCanvas imageCanvas){
-    this.deviceImageCanvas = imageCanvas;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +13,7 @@ class ImageMaterialItem extends StatelessWidget {
       onTap: () {
         //处理点击事件
         //print("image url = "+ this.data.imgUrl);
-        deviceImageCanvas.setSelectImgUrl(this.data.imgUrl);
+        this.data.onClicked(this.data.imgUrl);
       },
       child: Container(
         alignment: Alignment.center,
@@ -63,6 +57,8 @@ class ImageMaterialItem extends StatelessWidget {
   }
 }
 
+typedef SelectedCallback = void Function(String imgUrl);
+
 class ImageMaterialItemViewModel {
 
   /// 标题
@@ -71,8 +67,11 @@ class ImageMaterialItemViewModel {
   ///图片资源路径
   late final String imgUrl;
 
+  late SelectedCallback onClicked;
+
   ImageMaterialItemViewModel({
     required this.imgUrl,
     required this.title,
+    required this.onClicked(imgUrl),
   });
 }
