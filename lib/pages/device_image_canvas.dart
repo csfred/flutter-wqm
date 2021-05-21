@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web/utils/image_material_item.dart';
@@ -9,11 +12,9 @@ import '../side_bar.dart';
 
 // ignore: must_be_immutable
 class DeviceImageCanvas extends StatefulWidget {
-
-  late _DeviceImageCanvasState canvasState = _DeviceImageCanvasState();
   
   @override
-  _DeviceImageCanvasState createState() => canvasState;
+  State<DeviceImageCanvas> createState() => _DeviceImageCanvasState();
 }
 
 typedef SelectedCallback = void Function(String imgUrl);
@@ -21,11 +22,11 @@ typedef SelectedCallback = void Function(String imgUrl);
 class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
 
 
-  static String selectedImgUrl = "";
-
+  static String selectedImgUrl = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1486815995,1021386370&fm=224&gp=0.jpg";
  
   static final String _imgUrl = 'http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg';
 
+  static Image _image = Image.network(selectedImgUrl);
 
   List<ImageMaterialItem> imageMaterialList = [
     ImageMaterialItem(
@@ -34,6 +35,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           title: '设备1',
           onClicked: (imgUrl){
             selectedImgUrl = imgUrl;
+            _image = Image.network(imgUrl);
             print("设备1 url="+selectedImgUrl);
           }
         ),
@@ -45,6 +47,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           onClicked: (imgUrl){
             // setSelectedUrl(imgUrl);
             selectedImgUrl = imgUrl;
+            _image = Image.network(imgUrl);
             print("设备2 url="+selectedImgUrl);
           }
         ),
@@ -56,6 +59,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           onClicked: (imgUrl){
             // setSelectedUrl(imgUrl);
             selectedImgUrl = imgUrl;
+            _image = Image.network(imgUrl);
             print("设备3 url="+selectedImgUrl);
           }
         ),
@@ -67,6 +71,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           onClicked: (imgUrl){
             // setSelectedUrl(imgUrl);
             selectedImgUrl = imgUrl;
+            _image = Image.network(imgUrl);
             print("设备4 url="+selectedImgUrl);
           }
         ),
@@ -78,8 +83,8 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           onClicked: (imgUrl){
             // setSelectedUrl(imgUrl);
             selectedImgUrl = imgUrl;
-            print("设备5 url="+selectedImgUrl);
-          }
+            _image = Image.network(imgUrl);
+            print("设备5 url="+selectedImgUrl);          }
         ),
     ),
   ];
@@ -99,7 +104,8 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
           children: <Widget>[
             //画布区域
             Container(
-              child: Image.network(selectedImgUrl),
+              width: 1000,
+              child: _image,
             ),
             Divider(height: 10, color: Colors.lightGreen,),
             //素材展示区域
@@ -134,6 +140,5 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
         ),
       ),
     );
-  }
+  } 
 }
-
