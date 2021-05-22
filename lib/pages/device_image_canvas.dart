@@ -28,7 +28,10 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
 
   static Image _image = Image.network(selectedImgUrl);
 
-  List<ImageMaterialItem> imageMaterialList = [
+
+  GlobalKey<_DeviceImageCanvasState> textKey = GlobalKey();
+
+  static List<ImageMaterialItem> imageMaterialList = [
     ImageMaterialItem(
       data: ImageMaterialItemViewModel(
           imgUrl: _imgUrl,
@@ -84,14 +87,35 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
             // setSelectedUrl(imgUrl);
             selectedImgUrl = imgUrl;
             _image = Image.network(imgUrl);
-            print("设备5 url="+selectedImgUrl);          }
+            print("设备5 url="+selectedImgUrl);
+          }
         ),
     ),
   ];
   
+  
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return buildMain(context);
+  } 
+
+  static Widget canvasImages(Image image){
+    return Container(
+        width: 1200,
+        child: Container(
+          width: 300,
+          height: 300,
+          child: Column(children: [
+            Text("设备运转正常"),
+            image,
+          ],
+          ),
+        ),
+      );
+  }
+
+ static Widget buildMain(BuildContext context){
+    return Scaffold(
       appBar: AppBar(
         title: Text(
           '污水处理在线监测平台 / 设备底图绘制',
@@ -103,10 +127,7 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
         child: Row(
           children: <Widget>[
             //画布区域
-            Container(
-              width: 1000,
-              child: _image,
-            ),
+            canvasImages(_image),
             Divider(height: 10, color: Colors.lightGreen,),
             //素材展示区域
             Expanded(
@@ -140,5 +161,5 @@ class _DeviceImageCanvasState extends State<DeviceImageCanvas> {
         ),
       ),
     );
-  } 
+  }
 }
