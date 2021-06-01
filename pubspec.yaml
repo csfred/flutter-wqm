@@ -51,6 +51,8 @@ dependencies:
   #图片缩放平移
   gesture_zoom_box: ^0.0.3
 
+  provider: ^5.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

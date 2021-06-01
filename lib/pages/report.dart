@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/side_bar.dart';
+import 'package:flutter_web/utils/tables/horizontal_data_table.dart';
 
 import 'data_model/user.dart';
 
@@ -10,15 +11,18 @@ class ReportPage extends StatefulWidget {
 
 class _ReportPageState extends State<ReportPage> {
 
-  late final List<User> _data = [];
+  HDTRefreshController _hdtRefreshController = HDTRefreshController();
+  static const int sortName = 0;
+  static const int sortStatus = 1;
+  bool isAscending = true;
+  int sortType = sortName;
+
+  User user = User();
   
   @override
   void initState() {
     super.initState();
-    List.generate(100, (index) {
-      _data.add(User('老孟$index', index % 50, index % 2 == 0 ? '男' : '女', index / 2));
-    });
-
+    user.initData(100);
   }
 
   @override
@@ -32,8 +36,8 @@ class _ReportPageState extends State<ReportPage> {
         centerTitle: true,
       ),
       body: Container(
-         //width: 1500.0,
-        // height: 100.0,
+        width:  MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,
         child: paginatedDataTableWidget(context),
       ),
       drawer: Builder(
@@ -45,42 +49,145 @@ class _ReportPageState extends State<ReportPage> {
   }
 
   Widget paginatedDataTableWidget(BuildContext context){
-    return Container(
-        padding: EdgeInsets.all(16.0),
-        child: Table(
-         //设置表格有多少列,并制定列宽
-            columnWidths: const <int, TableColumnWidth>{
-              //指定索引及固定列宽
-              0: FixedColumnWidth(100.0),
-              1: FixedColumnWidth(40.0),
-              2: FixedColumnWidth(80.0),
-              3: FixedColumnWidth(80.0),
-            },
+    return  HorizontalDataTable(
+        leftHandSideColumnWidth: 100,
+        rightHandSideColumnWidth: 600,
+        isFixedHeader: true,
+        headerWidgets: _getTitleWidget(),
+        leftSideItemBuilder: _generateFirstColumnRow,
+        rightSideItemBuilder: _generateRightHandSideColumnRow,
+        itemCount: user.userInfo.length,
+        rowSeparatorWidget: const Divider(
+          color: Colors.black54,
+          height: 1.0,
+          thickness: 0.0,
+        ),
+        leftHandSideColBackgroundColor: Color(0xFFFFFFFF),
+        rightHandSideColBackgroundColor: Color(0xFFFFFFFF),
+        verticalScrollbarStyle: const ScrollbarStyle(
+          thumbColor: Colors.yellow,
+          isAlwaysShown: true,
+          thickness: 4.0,
+          radius: Radius.circular(5.0),
+        ),
+        horizontalScrollbarStyle: const ScrollbarStyle(
+          thumbColor: Colors.red,
+          isAlwaysShown: true,
+          thickness: 4.0,
+          radius: Radius.circular(5.0),
+        ),
+        enablePullToRefresh: true,
+        refreshIndicator: const WaterDropHeader(),
+        refreshIndicatorHeight: 60,
+        onRefresh: () async {
+          //Do sth
+          await Future.delayed(const Duration(milliseconds: 500));
+          _hdtRefreshController.refreshCompleted();
+        },
+        htdRefreshController: _hdtRefreshController,
+      );
+  }
 
-            //设置表格边框样式
-            border: TableBorder.all(
-                color: Colors.black26, width: 2.0, style: BorderStyle.solid),
-            children: const <TableRow>[
-              TableRow(children: <Widget>[
-                Text('姓名'),
-                Text('性别'),
-                Text('年龄'),
-                Text('体重'),
-              ]),
-              TableRow(children: <Widget>[
-                Text('小红'),
-                Text('女'),
-                Text('20'),
-                Text('50'),
-              ]),
-              TableRow(children: <Widget>[
-                Text('小强'),
-                Text('男'),
-                Text('20'),
-                Text('50'),
-              ]),
-            ]
-          ),
+  List<Widget> _getTitleWidget() {
+    return [
+      TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        child: _getTitleItemWidget(
+            'Name' + (sortType == sortName ? (isAscending ? '↓' : '↑') : ''),
+            100),
+        onPressed: () {
+          sortType = sortName;
+          isAscending = !isAscending;
+          user.sortName(isAscending);
+          setState(() {});
+        },
+      ),
+      TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        child: _getTitleItemWidget(
+            'Status' +
+                (sortType == sortStatus ? (isAscending ? '↓' : '↑') : ''),
+            100),
+        onPressed: () {
+          sortType = sortStatus;
+          isAscending = !isAscending;
+          user.sortStatus(isAscending);
+          setState(() {});
+        },
+      ),
+      _getTitleItemWidget('Phone', 200),
+      _getTitleItemWidget('Register', 100),
+      _getTitleItemWidget('Termination', 200),
+    ];
+  }
+
+  Widget _getTitleItemWidget(String label, double width) {
+    return Container(
+      child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+      width: width,
+      height: 56,
+      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.centerLeft,
     );
   }
+
+  Widget _generateFirstColumnRow(BuildContext context, int index) {
+    return Container(
+      child: Text(user.userInfo[index].name),
+      width: 100,
+      height: 52,
+      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.centerLeft,
+    );
+  }
+
+  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
+    return Row(
+      children: <Widget>[
+        Container(
+          child: Row(
+            children: <Widget>[
+              Icon(
+                  user.userInfo[index].status
+                      ? Icons.notifications_off
+                      : Icons.notifications_active,
+                  color:
+                      user.userInfo[index].status ? Colors.red : Colors.green),
+              Text(user.userInfo[index].status ? 'Disabled' : 'Active')
+            ],
+          ),
+          width: 100,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].phone),
+          width: 200,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].registerDate),
+          width: 100,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].terminationDate),
+          width: 200,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+      ],
+    );
+  }
+
 }
