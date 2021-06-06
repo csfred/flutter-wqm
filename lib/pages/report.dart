@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web/side_bar.dart';
 import 'package:flutter_web/utils/tables/horizontal_data_table.dart';
 
-import 'data_model/user.dart';
+import 'data_model/device.dart';
 
 class ReportPage extends StatefulWidget {
   @override
@@ -95,8 +95,8 @@ class _ReportPageState extends State<ReportPage> {
           padding: EdgeInsets.zero,
         ),
         child: _getTitleItemWidget(
-            'Name' + (sortType == sortName ? (isAscending ? '↓' : '↑') : ''),
-            100),
+            '站点编号' + (sortType == sortName ? (isAscending ? '↓' : '↑') : ''),
+            300),
         onPressed: () {
           sortType = sortName;
           isAscending = !isAscending;
@@ -109,7 +109,7 @@ class _ReportPageState extends State<ReportPage> {
           padding: EdgeInsets.zero,
         ),
         child: _getTitleItemWidget(
-            'Status' +
+            '状态' +
                 (sortType == sortStatus ? (isAscending ? '↓' : '↑') : ''),
             100),
         onPressed: () {
@@ -119,9 +119,9 @@ class _ReportPageState extends State<ReportPage> {
           setState(() {});
         },
       ),
-      _getTitleItemWidget('Phone', 200),
-      _getTitleItemWidget('Register', 100),
-      _getTitleItemWidget('Termination', 200),
+      _getTitleItemWidget('手机', 200),
+      _getTitleItemWidget('注册地', 100),
+      _getTitleItemWidget('终止', 200),
     ];
   }
 
