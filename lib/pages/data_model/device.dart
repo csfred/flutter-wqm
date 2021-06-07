@@ -1,5 +1,5 @@
-class Device {
-  List<DeviceInfo> userInfo = [];
+class Device ChangeNotifier {
+  List<DeviceInfo> deviceInfo = [];
   List<String> keyList=[];				//后端json中的key值
   List contextList=[];					//后端json内容
   List titleList=[];					//后端数据中的标题信息
@@ -7,7 +7,7 @@ class Device {
 
   void initData(int size) {
     for (int i = 0; i < size; i++) {
-      userInfo.add(UserInfo(
+      deviceInfo.add(UserInfo(
           "User_$i", i % 3 == 0, '+001 9999 9999', '2019-01-01', 'N/A'));
     }
   }
@@ -15,7 +15,7 @@ class Device {
   ///
   /// Single sort, sort Name's id
   void sortName(bool isAscending) {
-    userInfo.sort((a, b) {
+    deviceInfo.sort((a, b) {
       int aId = int.tryParse(a.name.replaceFirst('User_', '')) ?? 0;
       int bId = int.tryParse(b.name.replaceFirst('User_', '')) ?? 0;
       return (aId - bId) * (isAscending ? 1 : -1);
@@ -25,7 +25,7 @@ class Device {
   ///
   /// sort with Status and Name as the 2nd Sort
   void sortStatus(bool isAscending) {
-    userInfo.sort((a, b) {
+    deviceInfo.sort((a, b) {
       if (a.status == b.status) {
         int aId = int.tryParse(a.name.replaceFirst('User_', '')) ?? 0;
         int bId = int.tryParse(b.name.replaceFirst('User_', '')) ?? 0;
