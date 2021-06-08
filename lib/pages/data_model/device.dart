@@ -1,15 +1,34 @@
-class Device ChangeNotifier {
+class Device {
+  /// 设备列表内容
   List<DeviceInfo> deviceInfo = [];
-  List<String> keyList=[];				//后端json中的key值
-  List contextList=[];					//后端json内容
-  List titleList=[];					//后端数据中的标题信息
-  List contextNum=[];					//统计有几行数据
+  /// 后端json中的key值
+  List<String> keyList=[];
+  /// 后端json内容
+  List contextList=[];		
+  /// 后端数据中的标题信息
+  List titleList=['站点编号','设备名称','设备类型','设备控制信息','时间点','相同信息次数','开始时间','结束时间'];
+  /// 统计有几行数据
+  List contextNum=[];
 
-  void initData(int size) {
+  void initData(String requestDataJson) {
+    
     for (int i = 0; i < size; i++) {
-      deviceInfo.add(UserInfo(
+      deviceInfo.add(DeviceInfo(
           "User_$i", i % 3 == 0, '+001 9999 9999', '2019-01-01', 'N/A'));
     }
+  }
+
+  getTableInfo() async{
+    await request('getCommodity').then((val){
+      contextList=val;
+      keyList=['number','price'];
+      titleList=['操作','数量','价格'];
+      count=contextList.length;     
+      for(int i=0;i<count;i++){
+        contextNum.add(i);
+        openState.add({'symbol':'+'});
+      }
+    });
   }
 
   ///
